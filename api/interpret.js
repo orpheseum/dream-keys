@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const prompt = `You are a metaphysical dream interpreter with deep knowledge of Charles Fillmore's metaphysical teachings. Interpret this dream: ${dream}`;
 
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
