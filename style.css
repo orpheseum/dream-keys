@@ -9,3 +9,5 @@ button:hover { background: #6d28d9; }
 #result { background: #1a1a3e; border: 1px solid #3d3472; border-radius: 8px; padding: 25px; margin-top: 25px; line-height: 1.8; white-space: pre-wrap; }
 .hidden { display: none; }
 #loading { text-align: center; margin-top: 20px; color: #9b8ec4; font-style: italic; }
+#downloadBtn { background: #2d6a4f; margin-top: 15px; }
+#downloadBtn:hover { background: #1b4332; }
