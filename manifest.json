@@ -1,11 +1,11 @@
 {
-  "name": "Dream Interpreter",
-  "short_name": "Dreams",
+  "name": "Metaphysical Dream Keys",
+  "short_name": "Metaphysical Dream Keys",
   "description": "Metaphysical dream interpretation",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d0d2b",
-  "theme_color": "#7c3aed",
+  "background_color": "#1e1b35",
+  "theme_color": "#d4a843",
   "icons": [
     {
       "src": "icon-192.png",
