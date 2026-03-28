@@ -1,11 +1,13 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Georgia, serif; background: #1e1b35; color: #f0eefc; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+body { font-family: 'Cormorant Garamond', Georgia, serif; background: #1e1b35; color: #f0eefc; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
 .container { max-width: 750px; width: 90%; padding: 40px 30px; }
-h1 { font-size: 2.2rem; text-align: center; color: #d4a843; margin-bottom: 10px; }
-.subtitle { text-align: center; color: #b39dcc; margin-bottom: 30px; }
-textarea { width: 100%; height: 180px; background: #2a2650; border: 1px solid #8b9ed4; color: #f0eefc; padding: 15px; font-size: 1rem; border-radius: 8px; resize: vertical; }
+h1 { text-align: center; margin-bottom: 10px; line-height: 1.3; }
+h1 .meta { display: block; font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.3em; color: #d4a843; font-weight: 400; }
+h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: #b39dcc; font-weight: 600; }
+.subtitle { text-align: center; color: #8b9ed4; margin-bottom: 30px; font-size: 1rem; }
+textarea { width: 100%; height: 180px; background: #2a2650; border: 1px solid #8b9ed4; color: #f0eefc; padding: 15px; font-size: 1rem; font-family: 'Cormorant Garamond', serif; border-radius: 8px; resize: vertical; }
 textarea::placeholder { color: #9b7fa8; }
-button { display: block; margin: 20px auto; padding: 14px 40px; background: #8b9ed4; color: #1e1b35; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; font-weight: bold; }
+button { display: block; margin: 20px auto; padding: 14px 40px; background: #8b9ed4; color: #1e1b35; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; font-weight: bold; font-family: 'Cinzel', serif; letter-spacing: 0.05em; }
 button:hover { background: #b39dcc; }
 #result { background: #2a2650; border: 1px solid #8b9ed4; border-radius: 8px; padding: 25px; margin-top: 25px; line-height: 1.8; white-space: pre-wrap; }
 .hidden { display: none; }
