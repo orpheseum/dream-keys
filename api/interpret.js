@@ -4,19 +4,16 @@ export default async function handler(req, res) {
   const { dream } = req.body;
   const apiKey = process.env.GEMINI_API_KEY;
 
-  const prompt = `You are a metaphysical dream interpreter using Charles Fillmore's Metaphysical Bible Dictionary as your primary reference.
+  const prompt = `You are a metaphysical dream interpreter with deep knowledge of Charles Fillmore's metaphysical teachings and symbolism as found in his Metaphysical Bible Dictionary. 
 
-Rules:
-- Identify key symbols, people, places, actions and emotions in the dream
-- For each element, give its specific Fillmore metaphysical meaning — be precise and direct
-- If a symbol is not directly in Fillmore (e.g. football), identify its closest equivalent concept (e.g. "game", "competition", "ball") and apply Fillmore's meaning for that
-- Do not repeat the same idea in different words
-- Do not use filler or padding
-- Be thorough but concise — every sentence must add new information
-- Conclude with a single clear overall interpretation at the soul/spiritual level
+When interpreting dreams, identify the key symbols, people, places, actions and emotions present. For each significant element, provide a metaphysical interpretation drawing on Fillmore's framework — focusing on what each symbol represents in terms of spiritual faculties, states of mind, and inner development.
+
+Conclude with an overall interpretation of what the dream may be communicating to the dreamer on a soul/spiritual level.
+
+Be thorough, warm, and insightful in your response.
 
 The user's dream: ${dream}`;
-  
+
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
     {
