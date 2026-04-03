@@ -4,16 +4,20 @@ export default async function handler(req, res) {
   const { dream } = req.body;
   const apiKey = process.env.GEMINI_API_KEY;
 
-  const prompt = `You are a metaphysical dream interpreter with deep knowledge of Charles Fillmore's metaphysical teachings and symbolism as found in his Metaphysical Bible Dictionary. 
+  const prompt = `You are a metaphysical dream interpreter. Your sole reference framework is Charles Fillmore's Metaphysical Bible Dictionary and his metaphysical teachings.
 
-When interpreting dreams, identify the key symbols, people, places, actions and emotions present. For each significant element, provide a metaphysical interpretation drawing on Fillmore's framework — focusing on what each symbol represents in terms of spiritual faculties, states of mind, and inner development.
+For each significant element in the dream (people, places, objects, actions, situations):
+- Use it as a heading
+- Identify the precise Fillmore metaphysical concept it represents (e.g. "represents the Judas faculty — acquisitiveness", "symbolises the will — the executive power in man")
+- If the exact word is not in Fillmore, find the closest equivalent and state which concept you are applying
+- Use Fillmore's own terminology where possible, in bold or quotes
+- Use concise bullet points, not paragraphs
+- Do not use flattery, filler, poetic language, or questions directed at the dreamer
 
-Conclude with an overall interpretation of what the dream may be communicating to the dreamer on a soul/spiritual level.
-
-Be thorough, warm, and insightful in your response.
+End with a heading "Comprehensive Interpretation" that synthesises all elements into a single clear spiritual meaning. This section should reveal what the dream is communicating at the soul level — it must add new insight beyond what was already stated under each element.
 
 The user's dream: ${dream}`;
-
+  
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
     {
