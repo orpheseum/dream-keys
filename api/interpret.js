@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
   // Step 2: Search Supabase for relevant Fillmore passages
   const searchUrl = `${supabaseUrl}/rest/v1/rpc/match_fillmore`;
-  console.log('Searching:', searchUrl);
+  console.log('PASSAGES RETRIEVED:', context.substring(0, 1000));
   
   const searchRes = await fetch(searchUrl, {
     method: 'POST',
