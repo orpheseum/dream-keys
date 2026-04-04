@@ -26,8 +26,8 @@ export default async function handler(req, res) {
   const searchRes = await fetch(`${supabaseUrl}/rest/v1/rpc/match_fillmore`, {
     method: 'POST',
     headers: {
-      'apikey': supabaseKey,
-      'Authorization': `Bearer ${supabaseKey}`,
+      'apikey': process.env.SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${process.env.SUPABASE_ANON_KEY}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ query_embedding: embedding, match_count: 8 })
