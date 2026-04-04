@@ -23,7 +23,10 @@ export default async function handler(req, res) {
   if (!embedding) return res.status(500).json({ interpretation: 'Embedding failed. Please try again.' });
 
   // Step 2: Search Supabase for relevant Fillmore passages
-  const searchRes = await fetch(`${supabaseUrl}/rest/v1/rpc/match_fillmore`, {
+  const searchUrl = `${supabaseUrl}/rest/v1/rpc/match_fillmore`;
+  console.log('Searching:', searchUrl);
+  
+  const searchRes = await fetch(searchUrl, {
     method: 'POST',
     headers: {
       'apikey': process.env.SUPABASE_ANON_KEY,
@@ -32,7 +35,12 @@ export default async function handler(req, res) {
     },
     body: JSON.stringify({ query_embedding: embedding, match_count: 8 })
   });
-  const passages = await searchRes.json();
+  
+  const rawText = await searchRes.text();
+  console.log('Search status:', searchRes.status);
+  console.log('Search response:', rawText.substring(0, 500));
+  
+  const passages = JSON.parse(rawText);
   const context = Array.isArray(passages)
     ? passages.map(p => p.entry_text).join('\n\n---\n\n')
     : '';
