@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
   // Step 2: Search Supabase for relevant Fillmore passages
   const searchUrl = `${supabaseUrl}/rest/v1/rpc/match_fillmore`;
-  console.log('PASSAGES RETRIEVED:', context.substring(0, 1000));
+  console.log('Searching:', searchUrl);
   
   const searchRes = await fetch(searchUrl, {
     method: 'POST',
@@ -44,6 +44,8 @@ export default async function handler(req, res) {
   const context = Array.isArray(passages)
     ? passages.map(p => p.entry_text).join('\n\n---\n\n')
     : '';
+
+  console.log('PASSAGES RETRIEVED:', context.substring(0, 1000));
 
   // Step 3: Interpret with Gemini using retrieved passages
   const prompt = `You are a metaphysical dream interpreter using Charles Fillmore's Metaphysical Bible Dictionary as your sole reference. Relevant passages from the book are provided below.
