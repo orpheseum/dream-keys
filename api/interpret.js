@@ -46,22 +46,21 @@ export default async function handler(req, res) {
     : '';
 
   // Step 3: Interpret with Gemini using retrieved passages
-  const prompt = `You are a metaphysical dream interpreter. Your sole reference is Charles Fillmore's Metaphysical Bible Dictionary. Below are the most relevant passages from the book for this dream.
+  const prompt = `You are a metaphysical dream interpreter using Charles Fillmore's Metaphysical Bible Dictionary as your sole reference. Relevant passages from the book are provided below.
 
 FILLMORE PASSAGES:
 ${context}
 
-Using ONLY the above passages as your reference, interpret the dream as follows:
+INSTRUCTIONS:
+1. Open with one concise paragraph identifying the core spiritual tension or theme the dream is exploring, framed in Fillmore's metaphysical language. No flattery.
 
-1. Begin with a single introductory paragraph that identifies the overall spiritual theme or tension the dream is exploring, referencing Fillmore's framework. No flattery or filler.
+2. Interpret each significant element (people, places, objects, actions, situations) under its own heading. For each:
+   - Quote directly from the passages above using bold or quotation marks — do not paraphrase where a direct quote exists
+   - Identify the precise Fillmore concept (e.g. "Judas faculty", "acquisitiveness", "carnal mind") by name
+   - If the exact word is absent from the passages, state the closest Fillmore concept and apply it explicitly
+   - Every sentence must add new information — no repetition
 
-2. Then interpret each significant element (people, places, objects, actions, situations) as a heading. For each:
-- Give Fillmore's specific metaphysical meaning drawing directly from the passages above
-- Use Fillmore's exact terminology and quote directly where relevant
-- If an element maps to a concept in the passages (e.g. football → game), state which concept you are using
-- Be precise — no repetition, no padding
-
-3. End with a "Comprehensive Interpretation" section synthesising all elements into a single clear spiritual meaning that adds new insight beyond what was said under each heading.
+3. End with "Comprehensive Interpretation" — synthesise all elements into one decisive spiritual meaning. This must go beyond restating individual elements and reveal what the soul is being shown at a deeper level. Use Fillmore's terminology throughout.
 
 THE DREAM: ${dream}`;
   const geminiRes = await fetch(
