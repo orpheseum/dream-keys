@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const { dream } = req.body;
   const geminiKey = process.env.GEMINI_API_KEY;
   const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
   // Step 1: Embed the dream
   const embedRes = await fetch(
@@ -23,32 +23,44 @@ export default async function handler(req, res) {
   const embedding = embedData.embedding?.values;
   if (!embedding) return res.status(500).json({ interpretation: 'Embedding failed. Please try again.' });
 
-  // Step 2: Search Supabase for relevant Fillmore passages
-  const searchUrl = `${supabaseUrl}/rest/v1/rpc/match_fillmore`;
-  console.log('Searching:', searchUrl);
-  
-  const searchRes = await fetch(searchUrl, {
+  // Step 2: Vector search
+  const searchRes = await fetch(`${supabaseUrl}/rest/v1/rpc/match_fillmore`, {
     method: 'POST',
     headers: {
-      'apikey': process.env.SUPABASE_ANON_KEY,
-      'Authorization': `Bearer ${process.env.SUPABASE_ANON_KEY}`,
+      'apikey': supabaseAnonKey,
+      'Authorization': `Bearer ${supabaseAnonKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ query_embedding: embedding, match_count: 15 })
   });
-  
-  const rawText = await searchRes.text();
-  console.log('Search status:', searchRes.status);
-  console.log('Search response:', rawText.substring(0, 500));
-  
-  const passages = JSON.parse(rawText);
-  const context = Array.isArray(passages)
+  const passages = await searchRes.json();
+  const vectorContext = Array.isArray(passages)
     ? passages.map(p => p.entry_text).join('\n\n---\n\n')
     : '';
 
-  console.log('PASSAGES RETRIEVED:', context.substring(0, 1000));
+  // Step 3: Keyword search — extract key nouns from dream and fetch matching entries
+  const keywords = dream.toLowerCase()
+    .match(/\b(boat|ship|water|left|right|hand|silence|applause|friend|audience|show|magic|money|financial|stage|people|fire|house|father|mother|son|daughter|king|city|river|mountain|light|dark|door|road|sea|sky|sun|moon|star|tree|child|man|woman|horse|lion|gold|silver|blood|death|life|sleep|dream|sword|spirit|soul|mind|heart|eye|voice|angel|devil|sin|prayer|faith|love|fear|joy|peace|war|judge|priest|temple|ark|cross|bread|wine|book|word|name|number|color|white|black|red|blue|green)\b/g) || [];
+  
+  const uniqueKeywords = [...new Set(keywords)].slice(0, 10);
+  
+  let keywordContext = '';
+  if (uniqueKeywords.length > 0) {
+    const keywordRes = await fetch(`${supabaseUrl}/rest/v1/fillmore_entries?or=(${uniqueKeywords.map(k => `entry_text.ilike.*${k}*`).join(',')})&limit=10`, {
+      headers: {
+        'apikey': supabaseAnonKey,
+        'Authorization': `Bearer ${supabaseAnonKey}`
+      }
+    });
+    const keywordPassages = await keywordRes.json();
+    keywordContext = Array.isArray(keywordPassages)
+      ? keywordPassages.map(p => p.entry_text).join('\n\n---\n\n')
+      : '';
+  }
 
-  // Step 3: Interpret with Gemini using retrieved passages
+  const context = vectorContext + (keywordContext ? '\n\n---\n\n' + keywordContext : '');
+
+  // Step 4: Interpret
   const prompt = `You are a metaphysical dream interpreter using Charles Fillmore's Metaphysical Bible Dictionary as your sole reference. Relevant passages from the book are provided below.
 
 FILLMORE PASSAGES:
@@ -66,6 +78,7 @@ INSTRUCTIONS:
 3. End with "Comprehensive Interpretation" — synthesise all elements into one decisive spiritual meaning. This must go beyond restating individual elements and reveal what the soul is being shown at a deeper level. Use Fillmore's terminology throughout.
 
 THE DREAM: ${dream}`;
+
   const geminiRes = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${geminiKey}`,
     {
