@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       'Authorization': `Bearer ${process.env.SUPABASE_ANON_KEY}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ query_embedding: embedding, match_count: 8 })
+    body: JSON.stringify({ query_embedding: embedding, match_count: 15 })
   });
   
   const rawText = await searchRes.text();
