@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'models/gemini-embedding-001',
-        content: { parts: [{ text: dream }] }
+        content: { parts: [{ text: dream }] },
         outputDimensionality: 768
       })
     }
