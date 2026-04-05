@@ -38,12 +38,12 @@ export default async function handler(req, res) {
     ? passages.map(p => p.entry_text).join('\n\n---\n\n')
     : '';
 
-  // Step 3: Keyword search — extract key nouns from dream and fetch matching entries
+  // Step 3: Keyword search
   const keywords = dream.toLowerCase()
     .match(/\b(boat|ship|water|left|right|hand|silence|applause|friend|audience|show|magic|money|financial|stage|people|fire|house|father|mother|son|daughter|king|city|river|mountain|light|dark|door|road|sea|sky|sun|moon|star|tree|child|man|woman|horse|lion|gold|silver|blood|death|life|sleep|dream|sword|spirit|soul|mind|heart|eye|voice|angel|devil|sin|prayer|faith|love|fear|joy|peace|war|judge|priest|temple|ark|cross|bread|wine|book|word|name|number|color|white|black|red|blue|green)\b/g) || [];
-  
+
   const uniqueKeywords = [...new Set(keywords)].slice(0, 10);
-  
+
   let keywordContext = '';
   if (uniqueKeywords.length > 0) {
     const keywordRes = await fetch(`${supabaseUrl}/rest/v1/fillmore_entries?or=(${uniqueKeywords.map(k => `entry_text.ilike.*${k}*`).join(',')})&limit=10`, {
