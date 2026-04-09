@@ -61,13 +61,10 @@ export default async function handler(req, res) {
   const context = vectorContext + (keywordContext ? '\n\n---\n\n' + keywordContext : '');
 
   // Step 4: Interpret
-  const prompt = `You are a metaphysical dream interpreter using Charles Fillmore's Metaphysical Bible Dictionary as your sole reference. Relevant passages from the book are provided below.
-
-FILLMORE PASSAGES:
-${context}
-
-INSTRUCTIONS:
-1. Open with one concise paragraph identifying the core spiritual tension or theme the dream is exploring, framed in Fillmore's metaphysical language. No flattery.
+  const levelInstructions = {
+    concise: `Provide a brief interpretation in plain prose (no headings). In 2-3 short paragraphs, identify the main spiritual theme and the key symbol meanings using Fillmore's framework. No bullet points. Be direct and accessible.`,
+    normal: `Interpret the main elements (3-5 most significant) under short headings. For each, give Fillmore's specific metaphysical meaning in 1-2 sentences. End with a short "Overall Interpretation" paragraph. Quote Fillmore directly where relevant.`,
+    comprehensive: `1. Open with one concise paragraph identifying the core spiritual tension or theme the dream is exploring, framed in Fillmore's metaphysical language. No flattery.
 
 2. Interpret each significant element (people, places, objects, actions, situations) under its own heading. For each:
    - Quote directly from the passages above using bold or quotation marks — do not paraphrase where a direct quote exists
@@ -75,10 +72,19 @@ INSTRUCTIONS:
    - If the exact word is absent from the passages, state the closest Fillmore concept and apply it explicitly
    - Every sentence must add new information — no repetition
 
-3. End with "Comprehensive Interpretation" — synthesise all elements into one decisive spiritual meaning. This must go beyond restating individual elements and reveal what the soul is being shown at a deeper level. Use Fillmore's terminology throughout.
+3. End with "Comprehensive Interpretation" — synthesise all elements into one decisive spiritual meaning that goes beyond restating individual elements. Use Fillmore's terminology throughout.`
+  };
+
+  const prompt = `You are a metaphysical dream interpreter using Charles Fillmore's Metaphysical Bible Dictionary as your sole reference. Relevant passages from the book are provided below.
+
+FILLMORE PASSAGES:
+${context}
+
+INSTRUCTIONS:
+${levelInstructions[level] || levelInstructions.normal}
 
 THE DREAM: ${dream}`;
-
+  
   const geminiRes = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${geminiKey}`,
     {
