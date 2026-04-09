@@ -1,3 +1,13 @@
+let selectedLevel = 'normal';
+
+document.querySelectorAll('.level-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedLevel = btn.dataset.level;
+  });
+});
+
 document.getElementById('interpretBtn').addEventListener('click', async () => {
   const dream = document.getElementById('dreamInput').value.trim();
   if (!dream) { alert('Please describe your dream first.'); return; }
@@ -10,7 +20,7 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
     const res = await fetch('/api/interpret', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ dream })
+      body: JSON.stringify({ dream, level: selectedLevel })
     });
     const data = await res.json();
     document.getElementById('result').textContent = data.interpretation;
