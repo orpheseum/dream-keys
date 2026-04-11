@@ -21,7 +21,7 @@ button:hover { background: #b8902f; }
 #copyBtn { background: #3d3472; color: #f0eefc; margin-top: 20px; }
 #copyBtn:hover { background: #4d4482; }
 .level-selector { margin-bottom: 20px; text-align: center; }
-.level-selector label { display: block; color: #8b9ed4; font-family: 'Raleway', sans-serif; font-size: 0.95rem; margin-bottom: 8px; margin-top: 16px; }
+.level-selector label { display: block; color: #8b9ed4; font-family: 'Raleway', sans-serif; font-size: 1rem; margin-bottom: 8px; margin-top: 16px; }
 .level-buttons { display: flex; justify-content: center; gap: 10px; }
 .level-btn { padding: 8px 0; width: 140px; background: #2a2650; color: #9b7fa8; border: 1px solid #8b9ed4; border-radius: 6px; font-size: 0.9rem; cursor: pointer; }
 .level-btn.active { background: #8b9ed4; color: #1e1b35; font-weight: bold; }
