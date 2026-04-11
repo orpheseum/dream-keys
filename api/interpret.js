@@ -82,6 +82,7 @@ ${context}
 
 INSTRUCTIONS:
 ${levelInstructions[level] || levelInstructions.normal}
+${lang && lang !== 'English' ? `IMPORTANT: Write your entire interpretation in ${lang}. Do not use English except for direct Fillmore quotes.\n\n` : ''}THE DREAM: ${dream}
 
 THE DREAM: ${dream}`;
   
