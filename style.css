@@ -47,7 +47,7 @@ button:hover { background: #b8902f; }
 #symbolsSection { margin-top: 20px; }
 .symbols-label { color: #b39dcc; font-family: 'Raleway', sans-serif; font-size: 0.85rem; margin-bottom: 10px; }
 #symbolsList { display: flex; flex-wrap: wrap; gap: 8px; }
-.symbol-tag { padding: 6px 14px; background: #2a2650; border: 1px solid #8b9ed4; border-radius: 20px; color: #d4a843; font-family: 'Raleway', sans-serif; font-size: 0.85rem; cursor: pointer; }
+.symbol-tag { padding: 6px 14px; background: #2a2650; border: 1px solid #3d3472; border-radius: 20px; color: #d4a843; font-family: 'Raleway', sans-serif; font-size: 0.85rem; cursor: pointer; }
 .symbol-tag:hover { background: #3a3660; }
 .symbol-tag.active { background: #8b9ed4; color: #1e1b35; }
 #symbolDetail { background: #2a2650; border: 1px solid #8b9ed4; border-radius: 8px; padding: 20px; margin-top: 15px; font-family: 'Raleway', sans-serif; font-size: 0.9rem; line-height: 1.7; color: #f0eefc; white-space: pre-wrap; }
