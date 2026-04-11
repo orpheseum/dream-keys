@@ -37,8 +37,40 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
     document.getElementById('result').textContent = data.interpretation;
     document.getElementById('result').classList.remove('hidden');
     document.getElementById('downloadBtn').classList.remove('hidden');
-    document.getElementById('saveBtn').classList.remove('hidden');
     document.getElementById('shareBtn').classList.remove('hidden');
+    document.getElementById('saveBtn').classList.remove('hidden');
+
+    // Symbols
+    const symbolsSection = document.getElementById('symbolsSection');
+    const symbolsList = document.getElementById('symbolsList');
+    const symbolDetail = document.getElementById('symbolDetail');
+    symbolDetail.classList.add('hidden');
+    
+    if (data.symbols && data.symbols.length > 0) {
+      symbolsList.innerHTML = data.symbols.map(s =>
+        `<span class="symbol-tag" data-symbol="${s}">${s}</span>`
+      ).join('');
+      symbolsSection.classList.remove('hidden');
+
+      document.querySelectorAll('.symbol-tag').forEach(tag => {
+        tag.addEventListener('click', async () => {
+          document.querySelectorAll('.symbol-tag').forEach(t => t.classList.remove('active'));
+          tag.classList.add('active');
+          symbolDetail.textContent = 'Loading...';
+          symbolDetail.classList.remove('hidden');
+
+          const res = await fetch('/api/symbol', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ symbol: tag.dataset.symbol })
+          });
+          const data = await res.json();
+          symbolDetail.textContent = data.entry || 'No entry found for this symbol.';
+        });
+      });
+    } else {
+      symbolsSection.classList.add('hidden');
+    }
   } catch (e) {
     document.getElementById('result').textContent = 'Something went wrong. Please try again.';
     document.getElementById('result').classList.remove('hidden');
