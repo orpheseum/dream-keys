@@ -45,4 +45,12 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
   a.download = 'dream-interpretation.txt';
   a.click();
   URL.revokeObjectURL(url);
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const interpretation = document.getElementById('result').textContent;
+  navigator.clipboard.writeText(interpretation).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
+  });
+});
 });
