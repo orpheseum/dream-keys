@@ -12,9 +12,9 @@ button:hover { background: #b8902f; }
 #result { background: #2a2650; border: 1px solid #8b9ed4; border-radius: 8px; padding: 25px; margin-top: 25px; margin-bottom: 0; line-height: 1.8; white-space: pre-wrap; font-family: 'Raleway', sans-serif; font-size: 0.95rem; }
 .hidden { display: none; }
 #loading { text-align: center; margin-top: 20px; color: #b39dcc; font-style: italic; }
-#downloadBtn { background: #d4a843; color: #1e1b35; margin-top: 15px; }
+#downloadBtn { background: #d4a843; color: #1e1b35; margin-top: 20px; }
 #downloadBtn:hover { background: #b8902f; }
-#copyBtn { background: #3d3472; color: #f0eefc; margin-top: 5px; }
+#copyBtn { background: #3d3472; color: #f0eefc; margin-top: 20px; }
 #copyBtn:hover { background: #4d4482; }
 .level-selector { margin-bottom: 20px; text-align: center; }
 .level-selector label { display: block; color: #8b9ed4; font-family: 'Raleway', sans-serif; font-size: 0.85rem; margin-bottom: 8px; margin-top: 16px; }
