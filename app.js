@@ -137,7 +137,7 @@ function renderJournal() {
 renderJournal();
 
 // Share
-document.getElementById('shareBtn').addEventListener('click', () => {
+document.getElementById('shareBtn').addEventListener('click', async () => {
   const dream = document.getElementById('dreamInput').value.trim();
   const interpretation = document.getElementById('result').textContent;
   const canvas = document.getElementById('shareCanvas');
@@ -148,52 +148,67 @@ document.getElementById('shareBtn').addEventListener('click', () => {
 
   ctx.fillStyle = '#1e1b35';
   ctx.fillRect(0, 0, 1080, 1080);
-
   ctx.strokeStyle = '#8b9ed4';
   ctx.lineWidth = 3;
   ctx.strokeRect(30, 30, 1020, 1020);
-
   ctx.fillStyle = '#d4a843';
   ctx.font = '700 36px serif';
   ctx.textAlign = 'center';
   ctx.fillText('METAPHYSICAL DREAM KEYS', 540, 100);
-
   ctx.strokeStyle = '#3d3472';
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(80, 120);
   ctx.lineTo(1000, 120);
   ctx.stroke();
-
   ctx.fillStyle = '#8b9ed4';
   ctx.font = '500 22px serif';
   ctx.textAlign = 'left';
   ctx.fillText('Dream:', 80, 165);
-
   ctx.fillStyle = '#f0eefc';
   ctx.font = '400 20px serif';
   const dreamLines = wrapText(ctx, dream.substring(0, 300) + (dream.length > 300 ? '...' : ''), 80, 195, 920, 28);
-
   const interpY = 195 + (dreamLines * 28) + 30;
   ctx.fillStyle = '#8b9ed4';
   ctx.font = '500 22px serif';
   ctx.fillText('Interpretation:', 80, interpY);
-
   ctx.fillStyle = '#f0eefc';
   ctx.font = '400 20px serif';
   const shortInterp = interpretation.substring(0, 600) + (interpretation.length > 600 ? '...' : '');
   wrapText(ctx, shortInterp, 80, interpY + 30, 920, 28);
-
   ctx.fillStyle = '#9b7fa8';
   ctx.font = '400 18px serif';
   ctx.textAlign = 'center';
   ctx.fillText('metaphysicaldreamkeys.com', 540, 1030);
 
+  if (navigator.canShare) {
+    canvas.toBlob(async (blob) => {
+      const file = new File([blob], 'dream-interpretation.png', { type: 'image/png' });
+      if (navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            title: 'Metaphysical Dream Keys',
+            text: 'My dream interpretation from Metaphysical Dream Keys',
+            files: [file]
+          });
+        } catch (e) {
+          if (e.name !== 'AbortError') downloadCanvas(canvas);
+        }
+      } else {
+        downloadCanvas(canvas);
+      }
+    }, 'image/png');
+  } else {
+    downloadCanvas(canvas);
+  }
+});
+
+function downloadCanvas(canvas) {
   const a = document.createElement('a');
   a.href = canvas.toDataURL('image/png');
   a.download = 'dream-interpretation-card.png';
   a.click();
-});
+}
 
 function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   const words = text.split(' ');
