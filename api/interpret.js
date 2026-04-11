@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
-  const { dream, level, lang } = req.body;
+  const { dream, level } = req.body;
   const geminiKey = process.env.GEMINI_API_KEY;
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
@@ -82,7 +82,6 @@ ${context}
 
 INSTRUCTIONS:
 ${levelInstructions[level] || levelInstructions.normal}
-${lang && lang !== 'English' ? `IMPORTANT: Write your entire interpretation in ${lang}. Do not use English except for direct Fillmore quotes.\n\n` : ''}THE DREAM: ${dream}
 
 THE DREAM: ${dream}`;
   
