@@ -96,5 +96,6 @@ THE DREAM: ${dream}`;
   const geminiData = await geminiRes.json();
   const interpretation = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || 'Unable to interpret this dream. Please try again.';
 
-  res.status(200).json({ interpretation });
+  const symbols = uniqueKeywords.slice(0, 8);
+  res.status(200).json({ interpretation, symbols });
 }
