@@ -26,6 +26,7 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
   document.getElementById('downloadBtn').classList.add('hidden');
   document.getElementById('copyBtn').classList.add('hidden');
   document.getElementById('saveBtn').classList.add('hidden');
+  document.getElementById('shareBtn').classList.add('hidden');
 
   try {
     const res = await fetch('/api/interpret', {
@@ -39,6 +40,7 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
     document.getElementById('downloadBtn').classList.remove('hidden');
     document.getElementById('copyBtn').classList.remove('hidden');
     document.getElementById('saveBtn').classList.remove('hidden');
+    document.getElementById('shareBtn').classList.remove('hidden');
   } catch (e) {
     document.getElementById('result').textContent = 'Something went wrong. Please try again.';
     document.getElementById('result').classList.remove('hidden');
@@ -133,3 +135,84 @@ function renderJournal() {
 }
 
 renderJournal();
+
+// Share
+document.getElementById('shareBtn').addEventListener('click', () => {
+  const dream = document.getElementById('dreamInput').value.trim();
+  const interpretation = document.getElementById('result').textContent;
+  const canvas = document.getElementById('shareCanvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = 1080;
+  canvas.height = 1080;
+
+  ctx.fillStyle = '#1e1b35';
+  ctx.fillRect(0, 0, 1080, 1080);
+
+  ctx.strokeStyle = '#8b9ed4';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(30, 30, 1020, 1020);
+
+  ctx.fillStyle = '#d4a843';
+  ctx.font = '700 36px serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('METAPHYSICAL DREAM KEYS', 540, 100);
+
+  ctx.strokeStyle = '#3d3472';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(80, 120);
+  ctx.lineTo(1000, 120);
+  ctx.stroke();
+
+  ctx.fillStyle = '#8b9ed4';
+  ctx.font = '500 22px serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Dream:', 80, 165);
+
+  ctx.fillStyle = '#f0eefc';
+  ctx.font = '400 20px serif';
+  const dreamLines = wrapText(ctx, dream.substring(0, 300) + (dream.length > 300 ? '...' : ''), 80, 195, 920, 28);
+
+  const interpY = 195 + (dreamLines * 28) + 30;
+  ctx.fillStyle = '#8b9ed4';
+  ctx.font = '500 22px serif';
+  ctx.fillText('Interpretation:', 80, interpY);
+
+  ctx.fillStyle = '#f0eefc';
+  ctx.font = '400 20px serif';
+  const shortInterp = interpretation.substring(0, 600) + (interpretation.length > 600 ? '...' : '');
+  wrapText(ctx, shortInterp, 80, interpY + 30, 920, 28);
+
+  ctx.fillStyle = '#9b7fa8';
+  ctx.font = '400 18px serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('metaphysicaldreamkeys.com', 540, 1030);
+
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/png');
+  a.download = 'dream-interpretation-card.png';
+  a.click();
+});
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let lineCount = 0;
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + ' ';
+      y += lineHeight;
+      lineCount++;
+      if (y > 980) break;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y);
+  lineCount++;
+  return lineCount;
+}
