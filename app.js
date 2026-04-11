@@ -217,3 +217,18 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   lineCount++;
   return lineCount;
 }
+// Download journal
+document.getElementById('downloadJournalBtn').addEventListener('click', () => {
+  const journal = JSON.parse(localStorage.getItem('dreamJournal') || '[]');
+  if (journal.length === 0) { alert('Your journal is empty.'); return; }
+  const content = journal.map((entry, i) =>
+    `ENTRY ${i + 1} — ${entry.date}\n${'='.repeat(40)}\nDREAM\n-----\n${entry.dream}\n\nINTERPRETATION\n--------------\n${entry.interpretation}`
+  ).join('\n\n' + '='.repeat(40) + '\n\n');
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'dream-journal.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
