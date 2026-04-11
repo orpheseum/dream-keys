@@ -42,7 +42,7 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
     const res = await fetch('/api/interpret', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ dream, level: selectedLevel })
+      body: JSON.stringify({ dream, level: selectedLevel, lang: selectedLang })
     });
     const data = await res.json();
     document.getElementById('result').textContent = data.interpretation;
