@@ -29,6 +29,8 @@ button:hover { background: #b8902f; }
 .level-btn.active:hover { background: #8b9ed4; }
 #saveBtn { background: #2d6a4f; color: #f0eefc; margin-top: 20px; }
 #saveBtn:hover { background: #1b4332; }
+#shareBtn { background: #4a3080; color: #f0eefc; margin-top: 20px; }
+#shareBtn:hover { background: #5a4090; }
 #journalSection { margin-top: 40px; border-top: 1px solid #3d3472; padding-top: 20px; }
 #journalToggle { color: #d4a843; font-family: 'Cinzel', serif; font-size: 1rem; cursor: pointer; letter-spacing: 0.1em; margin-bottom: 15px; }
 .journal-entry { background: #2a2650; border: 1px solid #3d3472; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
