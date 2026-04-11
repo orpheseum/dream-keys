@@ -23,7 +23,7 @@ button:hover { background: #b8902f; }
 .level-selector { margin-bottom: 20px; text-align: center; }
 .level-selector label { display: block; color: #b39dcc; font-family: 'Raleway', sans-serif; font-size: 1rem; margin-bottom: 8px; margin-top: 16px; }
 .level-buttons { display: flex; justify-content: center; gap: 10px; }
-.level-btn { padding: 8px 0; width: 140px; background: #2a2650; color: #d4a843; border: 1px solid #8b9ed4; border-radius: 6px; font-size: 0.9rem; cursor: pointer; }
+.level-btn { padding: 8px 0; width: 140px; background: #2a2650; color: #d4a843; border: 1px solid #3d3472; border-radius: 6px; font-size: 0.9rem; cursor: pointer; }
 .level-btn.active { background: #8b9ed4; color: #1e1b35; font-weight: bold; }
 .level-btn:hover { background: #3a3660; }
 .level-btn.active:hover { background: #8b9ed4; }
@@ -42,7 +42,7 @@ button:hover { background: #b8902f; }
 .journal-delete { float: right; color: #9b7fa8; font-size: 0.8rem; cursor: pointer; font-family: 'Raleway', sans-serif; }
 .journal-delete:hover { color: #f0eefc; }
 #journalWarning { color: #9b7fa8; font-family: 'Raleway', sans-serif; font-size: 0.8rem; margin-top: 20px; line-height: 1.5; }
-#downloadJournalBtn { display: block; margin: 10px auto 0; padding: 10px 30px; background: #2a2650; color: #d4a843; border: 1px solid #8b9ed4; border-radius: 8px; font-size: 0.9rem; cursor: pointer; font-family: 'Raleway', sans-serif; }
+#downloadJournalBtn { display: block; margin: 10px auto 0; padding: 10px 30px; background: #2a2650; color: #d4a843; border: 1px solid #3d3472; border-radius: 8px; font-size: 0.9rem; cursor: pointer; font-family: 'Raleway', sans-serif; }
 #downloadJournalBtn:hover { background: #3a3660; }
 #symbolsSection { margin-top: 20px; }
 .symbols-label { color: #b39dcc; font-family: 'Raleway', sans-serif; font-size: 0.85rem; margin-bottom: 10px; }
