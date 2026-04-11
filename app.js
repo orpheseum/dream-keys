@@ -8,6 +8,12 @@ document.querySelectorAll('.level-btn').forEach(btn => {
   });
 });
 
+document.getElementById('dreamInput').addEventListener('input', () => {
+  const text = document.getElementById('dreamInput').value.trim();
+  const count = text === '' ? 0 : text.split(/\s+/).length;
+  document.getElementById('wordCount').textContent = `${count} word${count !== 1 ? 's' : ''}`;
+});
+
 document.getElementById('interpretBtn').addEventListener('click', async () => {
   const dream = document.getElementById('dreamInput').value.trim();
   if (!dream) { alert('Please describe your dream first.'); return; }
