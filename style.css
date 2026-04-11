@@ -33,7 +33,7 @@ button:hover { background: #b8902f; }
 #shareBtn:hover { background: #5a4090; }
 #journalSection { margin-top: 40px; border-top: 1px solid #3d3472; padding-top: 20px; }
 #journalToggle { color: #d4a843; font-family: 'Cinzel', serif; font-size: 1rem; cursor: pointer; letter-spacing: 0.1em; margin-bottom: 15px; }
-.journal-entry { background: #2a2650; border: 1px solid #3d3472; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+.journal-entry { background: #2a2650; border: 1px solid #8b9ed4; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
 .journal-entry-date { color: #9b7fa8; font-size: 0.8rem; font-family: 'Raleway', sans-serif; margin-bottom: 6px; }
 .journal-entry-dream { color: #d4a843; font-family: 'Raleway', sans-serif; font-size: 0.9rem; margin-bottom: 8px; font-style: italic; }
 .journal-entry-interp { color: #f0eefc; font-family: 'Raleway', sans-serif; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap; max-height: 150px; overflow: hidden; position: relative; }
@@ -50,4 +50,4 @@ button:hover { background: #b8902f; }
 .symbol-tag { padding: 6px 14px; background: #2a2650; border: 1px solid #8b9ed4; border-radius: 20px; color: #d4a843; font-family: 'Raleway', sans-serif; font-size: 0.85rem; cursor: pointer; }
 .symbol-tag:hover { background: #3a3660; }
 .symbol-tag.active { background: #8b9ed4; color: #1e1b35; }
-#symbolDetail { background: #2a2650; border: 1px solid #3d3472; border-radius: 8px; padding: 20px; margin-top: 15px; font-family: 'Raleway', sans-serif; font-size: 0.9rem; line-height: 1.7; color: #f0eefc; white-space: pre-wrap; }
+#symbolDetail { background: #2a2650; border: 1px solid #8b9ed4; border-radius: 8px; padding: 20px; margin-top: 15px; font-family: 'Raleway', sans-serif; font-size: 0.9rem; line-height: 1.7; color: #f0eefc; white-space: pre-wrap; }
