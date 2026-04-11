@@ -12,7 +12,10 @@ button { display: block; margin: 20px auto; padding: 14px 40px; background: #d4a
 button:hover { background: #b8902f; }
 #result { background: #2a2650; border: 1px solid #8b9ed4; border-radius: 8px; padding: 25px; margin-top: 25px; margin-bottom: 0; line-height: 1.8; white-space: pre-wrap; font-family: 'Raleway', sans-serif; font-size: 0.95rem; }
 .hidden { display: none; }
-#loading { text-align: center; margin-top: 20px; color: #b39dcc; font-style: italic; }
+#loading { text-align: center; margin-top: 20px; }
+.loading-moon { font-size: 2.5rem; animation: pulse 1.5s ease-in-out infinite; display: inline-block; }
+.loading-text { color: #b39dcc; font-style: italic; font-family: 'Raleway', sans-serif; margin-top: 8px; }
+@keyframes pulse { 0%, 100% { opacity: 0.3; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.1); } }
 #downloadBtn { background: #d4a843; color: #1e1b35; margin-top: 20px; }
 #downloadBtn:hover { background: #b8902f; }
 #copyBtn { background: #3d3472; color: #f0eefc; margin-top: 20px; }
