@@ -45,7 +45,7 @@ button:hover { background: #b8902f; }
 #downloadJournalBtn { display: block; margin: 10px auto 0; padding: 10px 30px; background: #2a2650; color: #8b9ed4; border: 1px solid #8b9ed4; border-radius: 8px; font-size: 0.9rem; cursor: pointer; font-family: 'Raleway', sans-serif; }
 #downloadJournalBtn:hover { background: #3a3660; }
 #symbolsSection { margin-top: 20px; }
-.symbols-label { color: #8b9ed4; font-family: 'Raleway', sans-serif; font-size: 0.85rem; margin-bottom: 10px; }
+.symbols-label { color: #b39dcc; font-family: 'Raleway', sans-serif; font-size: 0.85rem; margin-bottom: 10px; }
 #symbolsList { display: flex; flex-wrap: wrap; gap: 8px; }
 .symbol-tag { padding: 6px 14px; background: #2a2650; border: 1px solid #8b9ed4; border-radius: 20px; color: #d4a843; font-family: 'Raleway', sans-serif; font-size: 0.85rem; cursor: pointer; }
 .symbol-tag:hover { background: #3a3660; }
