@@ -41,3 +41,6 @@ button:hover { background: #b8902f; }
 .journal-expand { color: #8b9ed4; font-size: 0.8rem; cursor: pointer; font-family: 'Raleway', sans-serif; margin-top: 6px; display: inline-block; }
 .journal-delete { float: right; color: #9b7fa8; font-size: 0.8rem; cursor: pointer; font-family: 'Raleway', sans-serif; }
 .journal-delete:hover { color: #f0eefc; }
+#journalWarning { color: #9b7fa8; font-family: 'Raleway', sans-serif; font-size: 0.8rem; margin-top: 20px; line-height: 1.5; }
+#downloadJournalBtn { display: block; margin: 10px auto 0; padding: 10px 30px; background: #2a2650; color: #8b9ed4; border: 1px solid #8b9ed4; border-radius: 8px; font-size: 0.9rem; cursor: pointer; font-family: 'Raleway', sans-serif; }
+#downloadJournalBtn:hover { background: #3a3660; }
