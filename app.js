@@ -15,6 +15,7 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
   document.getElementById('loading').classList.remove('hidden');
   document.getElementById('result').classList.add('hidden');
   document.getElementById('downloadBtn').classList.add('hidden');
+  document.getElementById('copyBtn').classList.add('hidden');
 
   try {
     const res = await fetch('/api/interpret', {
@@ -26,6 +27,8 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
     document.getElementById('result').textContent = data.interpretation;
     document.getElementById('result').classList.remove('hidden');
     document.getElementById('downloadBtn').classList.remove('hidden');
+    document.getElementById('copyBtn').classList.remove('hidden');
+    
   } catch (e) {
     document.getElementById('result').textContent = 'Something went wrong. Please try again.';
     document.getElementById('result').classList.remove('hidden');
