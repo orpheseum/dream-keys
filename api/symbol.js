@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
-  const r = await fetch(`${supabaseUrl}/rest/v1/fillmore_entries?entry_text=ilike.${encodeURIComponent(symbol)}*&limit=1`, {
+  const r = await fetch(`${supabaseUrl}/rest/v1/fillmore_entries?entry_text=ilike.${encodeURIComponent('*' + symbol + '*')}&limit=3`, {
     headers: {
       'apikey': supabaseKey,
       'Authorization': `Bearer ${supabaseKey}`
