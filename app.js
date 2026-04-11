@@ -50,8 +50,10 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
 });
 
 document.getElementById('copyBtn').addEventListener('click', () => {
+  const dream = document.getElementById('dreamInput').value.trim();
   const interpretation = document.getElementById('result').textContent;
-  navigator.clipboard.writeText(interpretation).then(() => {
+  const content = `DREAM\n-----\n${dream}\n\nINTERPRETATION\n--------------\n${interpretation}`;
+  navigator.clipboard.writeText(content).then(() => {
     const btn = document.getElementById('copyBtn');
     btn.textContent = 'Copied!';
     setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
