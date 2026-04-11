@@ -1,15 +1,5 @@
 let selectedLevel = 'normal';
 
-let selectedLang = 'English';
-
-document.querySelectorAll('[data-lang]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    selectedLang = btn.dataset.lang;
-  });
-});
-
 // Level buttons
 document.querySelectorAll('.level-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -42,7 +32,7 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
     const res = await fetch('/api/interpret', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ dream, level: selectedLevel, lang: selectedLang })
+      body: JSON.stringify({ dream, level: selectedLevel })
     });
     const data = await res.json();
     document.getElementById('result').textContent = data.interpretation;
