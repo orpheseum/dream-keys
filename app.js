@@ -1,5 +1,15 @@
 let selectedLevel = 'normal';
 
+let selectedLang = 'English';
+
+document.querySelectorAll('[data-lang]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedLang = btn.dataset.lang;
+  });
+});
+
 // Level buttons
 document.querySelectorAll('.level-btn').forEach(btn => {
   btn.addEventListener('click', () => {
