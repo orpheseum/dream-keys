@@ -24,7 +24,6 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
   document.getElementById('loading').classList.remove('hidden');
   document.getElementById('result').classList.add('hidden');
   document.getElementById('downloadBtn').classList.add('hidden');
-  document.getElementById('copyBtn').classList.add('hidden');
   document.getElementById('saveBtn').classList.add('hidden');
   document.getElementById('shareBtn').classList.add('hidden');
 
@@ -38,7 +37,6 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
     document.getElementById('result').textContent = data.interpretation;
     document.getElementById('result').classList.remove('hidden');
     document.getElementById('downloadBtn').classList.remove('hidden');
-    document.getElementById('copyBtn').classList.remove('hidden');
     document.getElementById('saveBtn').classList.remove('hidden');
     document.getElementById('shareBtn').classList.remove('hidden');
   } catch (e) {
@@ -61,18 +59,6 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
   a.download = 'dream-interpretation.txt';
   a.click();
   URL.revokeObjectURL(url);
-});
-
-// Copy
-document.getElementById('copyBtn').addEventListener('click', () => {
-  const dream = document.getElementById('dreamInput').value.trim();
-  const interpretation = document.getElementById('result').textContent;
-  const content = `DREAM\n-----\n${dream}\n\nINTERPRETATION\n--------------\n${interpretation}`;
-  navigator.clipboard.writeText(content).then(() => {
-    const btn = document.getElementById('copyBtn');
-    btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
-  });
 });
 
 // Save to journal
