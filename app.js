@@ -26,6 +26,7 @@ document.getElementById('interpretBtn').addEventListener('click', async () => {
   document.getElementById('downloadBtn').classList.add('hidden');
   document.getElementById('saveBtn').classList.add('hidden');
   document.getElementById('shareBtn').classList.add('hidden');
+  document.getElementById('symbolsSection').classList.add('hidden');
 
   try {
     const res = await fetch('/api/interpret', {
