@@ -6,7 +6,6 @@ const supabase = createClient(
 );
 
 export default async function handler(req, res) {
-  // Only allow Vercel cron or manual GET
   const authHeader = req.headers.authorization;
   if (req.method !== 'GET') return res.status(405).end();
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}` && process.env.CRON_SECRET) {
@@ -14,12 +13,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { data, error } = await supabase
-      .from('fillmore_entries')
-      .select('id')
-      .limit(1);
+    const { error: writeError } = await supabase
+      .from('keepalive_pings')
+      .insert({ pinged_at: new Date().toISOString() });
 
-    if (error) throw error;
+    if (writeError) throw writeError;
+
     res.status(200).json({ ok: true, timestamp: new Date().toISOString() });
   } catch (err) {
     res.status(500).json({ ok: false, error: err.message });
